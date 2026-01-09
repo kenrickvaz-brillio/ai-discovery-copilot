@@ -2,6 +2,8 @@
 
 A frontend-only web app demo that simulates an AI-powered discovery workflow.
 
+**Live Demo:** [https://wonderful-rock-05024b71e.2.azurestaticapps.net](https://wonderful-rock-05024b71e.2.azurestaticapps.net)
+
 ## Features
 - **Project Management**: View recent projects and start new ones.
 - **Discovery Wizard**:
