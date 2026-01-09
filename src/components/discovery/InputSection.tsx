@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { FileText, Trash2, Eye, UploadCloud, Info } from 'lucide-react';
+import { FileText, Eye, UploadCloud, Info } from 'lucide-react';
 import { useStore } from '../../store/useStore';
-import { Card, Button, Badge } from '../common/UI';
+import { Card, Button } from '../common/UI';
 
 const InputSection: React.FC = () => {
     const { files, toggleFile, messiness, setMessiness, sensitivity, setSensitivity, currentProjectName, setProjectName } = useStore();

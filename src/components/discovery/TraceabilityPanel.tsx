@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link2, FileText, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Link2, FileText, AlertCircle } from 'lucide-react';
 import { Card, Badge } from '../common/UI';
 
 interface TraceabilityPanelProps {

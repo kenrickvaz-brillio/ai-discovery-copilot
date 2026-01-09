@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { TrendingUp, Clock, DollarSign, Users } from 'lucide-react';
+import { Clock, Users } from 'lucide-react';
 import { Card, Badge } from '../common/UI';
 
-interface OpportunitySizingProps {
-    data: any;
-}
-
-const OpportunitySizing: React.FC<OpportunitySizingProps> = ({ data }) => {
+const OpportunitySizing: React.FC = () => {
     const [members, setMembers] = useState(50000);
     const [callsPerMonth, setCallsPerMonth] = useState(15000);
     const [costPerCall, setCostPerCall] = useState(12);

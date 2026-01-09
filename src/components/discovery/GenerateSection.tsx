@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Terminal, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
 import { useStore } from '../../store/useStore';
-import { Button, Card, Badge } from '../common/UI';
+import { Button, Card } from '../common/UI';
 
 const GenerateSection: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
     const {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {
-    FileText, Users, List, Shield, AlertTriangle,
+    FileText, Users, Shield, AlertTriangle,
     TrendingUp, HelpCircle, ArrowRight, Download,
-    Share2, Copy, RotateCcw, ChevronDown, ChevronUp
+    Share2, RotateCcw
 } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { Button, Card, Badge } from '../components/common/UI';
@@ -213,7 +213,7 @@ const BriefPage: React.FC = () => {
                             </section>
                         )}
 
-                        {activeSection === 'sizing' && <OpportunitySizing data={generatedBrief.opportunitySizing} />}
+                        {activeSection === 'sizing' && <OpportunitySizing />}
 
                         {/* Add other sections as needed */}
                         {['risks', 'questions', 'next-steps'].includes(activeSection) && (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Info, Play, MessageSquare, X } from 'lucide-react';
+import { Play, MessageSquare, X } from 'lucide-react';
 import { useStore } from '../../store/useStore';
 import { Button, Card } from '../common/UI';
 
@@ -66,9 +66,8 @@ const DemoControls: React.FC = () => {
                         </div>
                     )}
                 </Card>
-            )
-            }
-        </div >
+            )}
+        </div>
     );
 };
 

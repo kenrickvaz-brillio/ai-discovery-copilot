@@ -7,12 +7,17 @@ interface Project {
     name: string;
     status: 'Draft' | 'Generated';
     timestamp: string;
+    industry?: string;
+    productType?: string;
+    updatedAt?: string;
+    fileCount?: number;
     brief?: any;
 }
 
 interface DiscoveryState {
     projects: Project[];
     currentProjectName: string;
+    currentStepIndex: number;
     files: MockFile[];
     messiness: 'low' | 'medium' | 'high';
     sensitivity: 'Public' | 'Internal' | 'Confidential' | 'Regulated';
@@ -30,6 +35,7 @@ interface DiscoveryState {
 
     // Actions
     setProjectName: (name: string) => void;
+    setStepIndex: (index: number) => void;
     addFile: (file: MockFile) => void;
     toggleFile: (id: string) => void;
     setMessiness: (level: 'low' | 'medium' | 'high') => void;
@@ -49,10 +55,29 @@ export const useStore = create<DiscoveryState>()(
     persist(
         (set, get) => ({
             projects: [
-                { id: 'p1', name: 'Member Portal Modernization', status: 'Generated', timestamp: '2026-01-08 14:00' },
-                { id: 'p2', name: 'Claims API Integration', status: 'Draft', timestamp: '2026-01-09 10:30' },
+                {
+                    id: 'p1',
+                    name: 'Member Portal Modernization',
+                    status: 'Generated',
+                    timestamp: '2026-01-08 14:00',
+                    industry: 'Healthcare',
+                    productType: 'Member portal',
+                    updatedAt: '2026-01-08T14:00:00Z',
+                    fileCount: 6
+                },
+                {
+                    id: 'p2',
+                    name: 'Claims API Integration',
+                    status: 'Draft',
+                    timestamp: '2026-01-09 10:30',
+                    industry: 'Insurance',
+                    productType: 'Internal tool',
+                    updatedAt: '2026-01-09T10:30:00Z',
+                    fileCount: 3
+                },
             ],
             currentProjectName: 'New Discovery Project',
+            currentStepIndex: 0,
             files: SAMPLE_FILES,
             messiness: 'medium',
             sensitivity: 'Confidential',
@@ -69,6 +94,7 @@ export const useStore = create<DiscoveryState>()(
             generatedBrief: null,
 
             setProjectName: (name) => set({ currentProjectName: name }),
+            setStepIndex: (index) => set({ currentStepIndex: index }),
             addFile: (file) => set((state) => ({ files: [...state.files, file] })),
             toggleFile: (id) => set((state) => ({
                 files: state.files.map(f => f.id === id ? { ...f, included: !f.included } : f)
@@ -137,7 +163,16 @@ export const useStore = create<DiscoveryState>()(
                             isGenerating: false,
                             generatedBrief: brief,
                             projects: [
-                                { id: Date.now().toString(), name: get().currentProjectName, status: 'Generated', timestamp: new Date().toLocaleString() },
+                                {
+                                    id: Date.now().toString(),
+                                    name: get().currentProjectName,
+                                    status: 'Generated',
+                                    timestamp: new Date().toLocaleString(),
+                                    industry: get().industry,
+                                    productType: get().productType,
+                                    updatedAt: new Date().toISOString(),
+                                    fileCount: get().files.filter(f => f.included).length
+                                },
                                 ...get().projects
                             ]
                         });
@@ -148,6 +183,7 @@ export const useStore = create<DiscoveryState>()(
 
             resetWizard: () => set({
                 currentProjectName: 'New Discovery Project',
+                currentStepIndex: 0,
                 files: SAMPLE_FILES,
                 messiness: 'medium',
                 sensitivity: 'Confidential',
@@ -164,6 +200,7 @@ export const useStore = create<DiscoveryState>()(
             loadSampleProject: () => {
                 set({
                     currentProjectName: 'Member Portal Modernization',
+                    currentStepIndex: 3,
                     files: SAMPLE_FILES.map(f => ({ ...f, included: true })),
                     messiness: 'medium',
                     sensitivity: 'Regulated',
@@ -172,7 +209,8 @@ export const useStore = create<DiscoveryState>()(
                     timeline: '12 weeks',
                     constraints: ['Accessibility AA required', 'Cloud-first', 'Must reuse existing systems'],
                     outputFormats: ['Discovery Brief', 'Persona cards', 'NFR matrix', 'Risk register'],
-                    aiTone: 'Product'
+                    aiTone: 'Product',
+                    generatedBrief: generateMockBrief()
                 });
             }
         }),

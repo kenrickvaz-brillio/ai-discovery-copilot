@@ -1,6 +1,5 @@
 import React from 'react';
 import { useStore } from '../../store/useStore';
-import { Card } from '../common/UI';
 
 const INDUSTRIES = ['Healthcare', 'Insurance', 'Retail', 'Telecom', 'Banking'];
 const PRODUCT_TYPES = ['Member portal', 'Mobile app', 'Internal tool', 'Data platform'];
