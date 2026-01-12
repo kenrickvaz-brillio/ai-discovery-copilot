@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Plus, FolderOpen, Clock, FileText } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { Button, Card, Badge } from '../components/common/UI';
+import { formatRelativeTime } from '../utils/dateUtils';
 
 const LandingPage: React.FC = () => {
     const navigate = useNavigate();
@@ -74,7 +75,7 @@ const LandingPage: React.FC = () => {
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', borderTop: '1px solid var(--border)', paddingTop: '1rem' }}>
                                     <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                                         <Clock size={14} />
-                                        {new Date(project.updatedAt || project.timestamp).toLocaleDateString()}
+                                        {formatRelativeTime(project.updatedAt || project.timestamp)}
                                     </span>
                                     <span>{project.fileCount || 0} files analyzed</span>
                                 </div>

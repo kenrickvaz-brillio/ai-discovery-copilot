@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FileText, Eye, UploadCloud, Info } from 'lucide-react';
 import { useStore } from '../../store/useStore';
-import { Card, Button } from '../common/UI';
+import { Button, Card } from '../common/UI';
+import '../../styles/DiscoverySections.css';
 
 const InputSection: React.FC = () => {
     const { files, toggleFile, messiness, setMessiness, sensitivity, setSensitivity, currentProjectName, setProjectName } = useStore();
@@ -79,7 +80,7 @@ const InputSection: React.FC = () => {
                 </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+            <div className="input-grid">
                 <div>
                     <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, marginBottom: '1rem' }}>
                         Messiness Slider

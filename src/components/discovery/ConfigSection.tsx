@@ -1,5 +1,6 @@
 import React from 'react';
 import { useStore } from '../../store/useStore';
+import '../../styles/DiscoverySections.css';
 
 const INDUSTRIES = ['Healthcare', 'Insurance', 'Retail', 'Telecom', 'Banking'];
 const PRODUCT_TYPES = ['Member portal', 'Mobile app', 'Internal tool', 'Data platform'];
@@ -31,7 +32,7 @@ const ConfigSection: React.FC = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            <div className="config-grid">
                 <div>
                     <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem' }}>Industry</label>
                     <select
@@ -56,20 +57,12 @@ const ConfigSection: React.FC = () => {
 
             <div>
                 <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem' }}>Target Timeline</label>
-                <div style={{ display: 'flex', gap: '1rem' }}>
+                <div className="timeline-grid">
                     {TIMELINES.map(t => (
                         <button
                             key={t}
                             onClick={() => setTimeline(t)}
-                            style={{
-                                flex: 1,
-                                padding: '0.75rem',
-                                borderRadius: 'var(--radius-md)',
-                                border: `1px solid ${timeline === t ? 'var(--primary)' : 'var(--border)'}`,
-                                background: timeline === t ? 'var(--primary-light)' : 'var(--surface)',
-                                color: timeline === t ? 'var(--primary)' : 'var(--text-main)',
-                                fontWeight: timeline === t ? 600 : 400
-                            }}
+                            className={`timeline-button ${timeline === t ? 'timeline-button-active' : ''}`}
                         >
                             {t}
                         </button>
@@ -79,7 +72,7 @@ const ConfigSection: React.FC = () => {
 
             <div>
                 <label style={{ display: 'block', fontWeight: 600, marginBottom: '1rem' }}>Team Constraints</label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                <div className="constraints-grid">
                     {CONSTRAINTS.map(c => (
                         <label key={c} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', cursor: 'pointer' }}>
                             <input

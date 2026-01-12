@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Terminal, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
 import { useStore } from '../../store/useStore';
 import { Button, Card } from '../common/UI';
+import '../../styles/DiscoverySections.css';
 
 const GenerateSection: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
     const {
@@ -99,7 +100,7 @@ const GenerateSection: React.FC<{ onComplete: () => void }> = ({ onComplete }) =
                         </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '2rem' }}>
+                    <div className="generate-layout">
                         <Card style={{ background: '#0f172a', color: '#94a3b8', fontFamily: 'monospace', padding: '1.5rem', height: '300px', overflowY: 'auto' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#38bdf8', marginBottom: '1rem', borderBottom: '1px solid #1e293b', paddingBottom: '0.5rem' }}>
                                 <Terminal size={16} />

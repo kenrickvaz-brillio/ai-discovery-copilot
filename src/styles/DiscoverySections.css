@@ -1,0 +1,118 @@
+/* InputSection Styles */
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.timeline-button {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-main);
+    font-weight: 400;
+    transition: all 0.2s ease;
+}
+
+.timeline-button-active {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.file-icon {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ConfigSection Styles */
+.config-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.timeline-grid {
+    display: flex;
+    gap: 1rem;
+}
+
+.constraints-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+/* GenerateSection Styles */
+.generate-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .config-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .timeline-grid {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .constraints-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .generate-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .file-item {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .file-item>div:nth-child(2) {
+        flex: 1 1 100%;
+        order: 3;
+    }
+
+    .file-item>div:nth-child(1) {
+        order: 1;
+    }
+
+    .file-item>div:nth-child(3) {
+        order: 2;
+        margin-left: auto;
+    }
+}

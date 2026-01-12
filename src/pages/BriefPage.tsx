@@ -8,6 +8,7 @@ import { useStore } from '../store/useStore';
 import { Button, Card, Badge } from '../components/common/UI';
 import TraceabilityPanel from '../components/discovery/TraceabilityPanel';
 import OpportunitySizing from '../components/discovery/OpportunitySizing';
+import { formatRelativeTime } from '../utils/dateUtils';
 
 const SECTIONS = [
     { id: 'summary', label: 'Executive Summary', icon: FileText },
@@ -53,7 +54,7 @@ const BriefPage: React.FC = () => {
             }}>
                 <div>
                     <h2 style={{ fontSize: '1.25rem' }}>{currentProjectName}</h2>
-                    <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Generated on {new Date().toLocaleString()}</p>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Generated {formatRelativeTime(new Date())}</p>
                 </div>
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
                     <Button variant="outline" size="sm" onClick={() => resetWizard()}>

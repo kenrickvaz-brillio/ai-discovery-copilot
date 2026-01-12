@@ -17,6 +17,8 @@ const STEPS = [
     { id: 'review', label: 'Review & Export', icon: CheckCircle, description: 'Final brief' },
 ];
 
+import '../styles/WizardPage.css';
+
 const WizardPage: React.FC = () => {
     const navigate = useNavigate();
     const { currentStepIndex, setStepIndex, generatedBrief } = useStore();
@@ -37,45 +39,35 @@ const WizardPage: React.FC = () => {
     };
 
     return (
-        <div style={{ display: 'flex', minHeight: 'calc(100vh - 70px)' }}>
+        <div className="wizard-container">
             {/* Sidebar Stepper */}
-            <div style={{
-                width: '300px',
-                background: 'var(--surface)',
-                borderRight: '1px solid var(--border)',
-                padding: '2rem'
-            }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div className="wizard-sidebar">
+                <div className="wizard-sidebar-content">
                     {STEPS.map((step, index) => {
                         const Icon = step.icon;
                         const isActive = index === currentStepIndex;
                         const isPast = index < currentStepIndex;
 
                         return (
-                            <div key={step.id} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                                <div style={{
-                                    width: '40px',
-                                    height: '40px',
-                                    borderRadius: '12px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    background: isActive ? 'var(--primary)' : isPast ? 'var(--success-light)' : 'var(--background)',
-                                    color: isActive ? 'white' : isPast ? 'var(--success)' : 'var(--text-muted)',
-                                    border: isActive ? 'none' : '1px solid var(--border)',
-                                    transition: 'all 0.3s ease'
-                                }}>
+                            <div key={step.id} className="step-item">
+                                <div
+                                    className="step-icon-container"
+                                    style={{
+                                        background: isActive ? 'var(--primary)' : isPast ? 'var(--success-light)' : 'var(--background)',
+                                        color: isActive ? 'white' : isPast ? 'var(--success)' : 'var(--text-muted)',
+                                        border: isActive ? 'none' : '1px solid var(--border)',
+                                    }}
+                                >
                                     {isPast ? <CheckCircle size={20} /> : <Icon size={20} />}
                                 </div>
                                 <div>
-                                    <div style={{
-                                        fontSize: '0.875rem',
-                                        fontWeight: 700,
-                                        color: isActive ? 'var(--text-main)' : 'var(--text-muted)'
-                                    }}>
+                                    <div
+                                        className="step-label"
+                                        style={{ color: isActive ? 'var(--text-main)' : 'var(--text-muted)' }}
+                                    >
                                         {step.label}
                                     </div>
-                                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{step.description}</div>
+                                    <div className="step-description">{step.description}</div>
                                 </div>
                             </div>
                         );
@@ -84,14 +76,15 @@ const WizardPage: React.FC = () => {
             </div>
 
             {/* Main Content */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'var(--background)' }}>
-                <div style={{ flex: 1, padding: '4rem', maxWidth: '1000px', margin: '0 auto', width: '100%' }}>
+            <div className="wizard-main">
+                <div className="wizard-content">
                     {currentStepIndex === 0 && <InputSection />}
                     {currentStepIndex === 1 && <ConfigSection />}
                     {currentStepIndex === 2 && <GenerateSection onComplete={() => setIsCompleted(true)} />}
                     {currentStepIndex === 3 && (
                         <div style={{ textAlign: 'center', padding: '4rem 0' }}>
                             <div style={{
+                                maxWidth: '1000px',
                                 width: '80px',
                                 height: '80px',
                                 background: 'var(--success-light)',
@@ -112,13 +105,7 @@ const WizardPage: React.FC = () => {
                 </div>
 
                 {/* Footer Navigation */}
-                <div style={{
-                    padding: '1.5rem 4rem',
-                    borderTop: '1px solid var(--border)',
-                    background: 'var(--surface)',
-                    display: 'flex',
-                    justifyContent: 'space-between'
-                }}>
+                <div className="wizard-footer">
                     <Button
                         variant="ghost"
                         onClick={handleBack}
